@@ -65,6 +65,7 @@ extern void spearHit();
 extern void timer(int mode);
 extern void makeCharacter(Game *game, int x, int y);
 extern void setTime();
+extern void resetTime();
 extern void setRightDoor(Game *game);
 
 void makeParticle(Game *game, int x, int y);
@@ -497,6 +498,8 @@ void enemyCollision(Game *game, Character *p, vector<Enemy> &enemies)
 			enemies.at(j).setHP(enemies.at(j).getHP() - 1);
 			if (enemies.at(j).getHP() <= 0) {
 				enemies.erase(enemies.begin() + j);
+				explosion();
+				resetTime();
 				setRightDoor(game);		
 			}
 		}

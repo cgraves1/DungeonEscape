@@ -426,35 +426,37 @@ void totalTimer()
 
 void outputScore(Game *gm)
 {
-	finish = true;
-	Flt h, w;
+	//finish = true;
+	/*Flt h, w;
 	Rect r;
-	int c = 0xffffffff;
-	h = 50;
-	w = 50;
-	glPushMatrix();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4f(0.0, 0.0, 0.0, 0.0);
-	glTranslated(gm->xres/2, gm->yres/2, 0);
-	glBegin(GL_QUADS);
-		glVertex2i(-w, -h);
-		glVertex2i(-w, +h);
-		glVertex2i(+w, +h);
-		glVertex2i(+w, -h);
-	glEnd();
-	glDisable(GL_BLEND);
-	glPopMatrix();
-	r.bot = gm->yres/2 + 800;
-	r.left = gm->xres/2.3;
-	r.center = .5;
-	if (totalSeconds < 10) {
-		ggprint8b(&r, 16, c, "Total Time: %d:0%d", totalMinutes, totalSeconds);
-	} else {
-		ggprint8b(&r, 16, c, "Total Time: %d:%d", totalMinutes, totalSeconds);
-	}
-	ggprint8b(&r, 16, c, "Deaths: %d", deaths);
-	ggprint8b(&r, 16, c, "Kills: %d", kills);
+	if (gm->state == STATE_GAMEPLAY) {
+		int c = 0xffffffff;
+		h = 50;
+		w = 50;
+		glPushMatrix();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glColor4f(0.0, 0.0, 0.0, 0.0);
+		glTranslated(gm->xres/2, gm->yres/2, 0);
+		glBegin(GL_QUADS);
+			glVertex2i(-w, -h);
+			glVertex2i(-w, +h);
+			glVertex2i(+w, +h);
+			glVertex2i(+w, -h);
+		glEnd();
+		glDisable(GL_BLEND);
+		glPopMatrix();
+		r.bot = gm->yres/2 + 400;
+		r.left = gm->xres/45;
+		r.center = .5;
+		if (totalSeconds < 10) {
+			ggprint8b(&r, 16, c, "Total Time: %d:0%d", totalMinutes, totalSeconds);
+		} else {
+			ggprint8b(&r, 16, c, "Total Time: %d:%d", totalMinutes, totalSeconds);
+		}
+		ggprint8b(&r, 16, c, "Deaths: %d", deaths);
+		ggprint8b(&r, 16, c, "Kills: %d", kills);
+	}*/
 }
 
 void outputCurrentScore(Game *gm)
@@ -482,15 +484,20 @@ void outputCurrentScore(Game *gm)
 		r.bot = gm->yres/2 + 400;
 		r.left = gm->xres/45;
 		r.center = .5;
+		if (totalSeconds < 10) {
+			ggprint8b(&r, 16, c, "Total Time: %d:0%d", totalMinutes, totalSeconds);
+		} else {
+			ggprint8b(&r, 16, c, "Total Time: %d:%d", totalMinutes, totalSeconds);
+		}
 		if (seconds < 10) {
 			ggprint8b(&r, 16, c, "Time: %d:0%d", minutes, seconds);
 		} else {
 			ggprint8b(&r, 16, c, "Time: %d:%d", minutes, seconds);
 		}
+		ggprint8b(&r, 16, c, "Deaths: %d", deaths);
+		//ggprint8b(&r, 16, c, "Kills: %d", kills);
 		// use this code for testing timer on smaller 
 		// computer monitors or laptops
-		ggprint8b(&r, 16, c, "Deaths: %d", deaths);
-		ggprint8b(&r, 16, c, "Kills: %d", kills);
 		/*r.bot = gm->yres/2 + 200;
 		r.left = gm->xres/45;
 		r.center = .5;
